@@ -1,3 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1715014411
-icon.svg::CompressedTexture2D::3211163928305888262::1715014404::1715014412::1::::<><>::
+::res://::1715015619
+icon.svg::CompressedTexture2D::2581136727073175971::1715014654::1715014657::1::::<><>::
+::res://scenes/::1715015243
+player.tscn::PackedScene::255277520001734452::1715015243::0::1::::<><>::uid://cpb4j25f0l1e1::::res://sprites/ExamplePlayerSprite.png
+playground.tscn::PackedScene::5910363108431675693::1715015243::0::1::::<><>::uid://dvwnbjovagj1::::res://scenes/player.tscn
+::res://sprites/::1715014968
+ExamplePlayerSprite.png::CompressedTexture2D::5829516729381753618::1715014010::1715014968::1::::<><>::
