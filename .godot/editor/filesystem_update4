@@ -1,5 +1,4 @@
-res://scenes/playground.tscn
+res://scenes/Grass_01.tscn
 res://scenes/player.tscn
-res://scripts/state.gd
-res://scripts/state_idle.gd
-res://scripts/state_walk.gd
+res://scenes/playground.tscn
+res://scripts/player.gd
