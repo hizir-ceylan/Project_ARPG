@@ -7,6 +7,7 @@ var attacking : bool = false
 @onready var animation_player : AnimationPlayer = $"../../AnimationPlayer"
 @onready var animation_attack : AnimationPlayer = $"../../PlayerSprite/AttackEffectsSprite/AnimationPlayer"
 @onready var audio_stream_player_2d : AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
+@onready var damage_box : DamageBox = $"../../Interactions/DamageBox"
 @export var attack_sound : AudioStream
 @export_range(1,20,0.5) var decelerate_speed : float = 5
 
@@ -19,12 +20,15 @@ func Enter() -> void:
 	audio_stream_player_2d.pitch_scale = randf_range(0.9, 1.1)
 	audio_stream_player_2d.play()
 	attacking = true
+	await get_tree().create_timer(0.075).timeout
+	damage_box.monitoring = true
 	pass
 
 #What happens when the player enters this state	
 func Exit() -> void:
 	animation_player.animation_finished.disconnect(EndAttack)
 	attacking = false
+	damage_box.monitoring = false
 	pass
 
 #What happens during the _physics_process update in this state
