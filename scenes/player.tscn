@@ -234,6 +234,9 @@ _data = {
 "no_attack": SubResource("Animation_24g5f")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_e5yuq"]
+radius = 20.0
+
 [sub_resource type="Animation" id="Animation_yo555"]
 length = 0.001
 tracks/0/type = "value"
@@ -247,6 +250,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite/AttackDamageBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 36)]
 }
 
 [sub_resource type="Animation" id="Animation_2kr0k"]
@@ -264,6 +279,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [21, 23]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite/AttackDamageBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 18)]
+}
 
 [sub_resource type="Animation" id="Animation_m3ivb"]
 resource_name = "attack_side"
@@ -280,6 +307,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [27, 29]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite/AttackDamageBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_h5180"]
 resource_name = "attack_up"
@@ -295,6 +334,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [24, 26]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite/AttackDamageBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -18)]
 }
 
 [sub_resource type="Animation" id="Animation_nmjbh"]
@@ -413,9 +464,6 @@ _data = {
 "walk_up": SubResource("Animation_rpxik")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e5yuq"]
-radius = 15.0
-
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 16
 motion_mode = 1
@@ -431,11 +479,17 @@ texture = ExtResource("2_vgbwt")
 hframes = 16
 vframes = 3
 
+[node name="ShadowSprite" type="Sprite2D" parent="PlayerSprite"]
+modulate = Color(0, 0, 0, 0.784314)
+show_behind_parent = true
+position = Vector2(0, 20)
+texture = ExtResource("4_47eta")
+
 [node name="AttackEffectsSprite" type="Sprite2D" parent="PlayerSprite"]
 position = Vector2(0, 10)
 texture = ExtResource("3_lc8ys")
 hframes = 12
-frame = 6
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite/AttackEffectsSprite"]
 libraries = {
@@ -443,11 +497,15 @@ libraries = {
 }
 autoplay = "no_attack"
 
-[node name="ShadowSprite" type="Sprite2D" parent="PlayerSprite"]
-modulate = Color(0, 0, 0, 0.784314)
-show_behind_parent = true
-position = Vector2(0, 20)
-texture = ExtResource("4_47eta")
+[node name="AttackDamageBox" parent="PlayerSprite" instance=ExtResource("10_p1hk4")]
+unique_name_in_owner = true
+position = Vector2(0, 36)
+collision_mask = 256
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprite/AttackDamageBox"]
+shape = SubResource("CircleShape2D_e5yuq")
+debug_color = Color(1, 0.00871419, 0.0407754, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -478,12 +536,3 @@ bus = &"SFX"
 
 [node name="Interactions" type="Node2D" parent="."]
 script = ExtResource("10_gv0ij")
-
-[node name="DamageBox" parent="Interactions" instance=ExtResource("10_p1hk4")]
-position = Vector2(0, 16)
-collision_mask = 256
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/DamageBox"]
-shape = SubResource("CircleShape2D_e5yuq")
-debug_color = Color(1, 0.00871419, 0.0407754, 0.42)

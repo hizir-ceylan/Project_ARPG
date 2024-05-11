@@ -12,7 +12,7 @@ func _ready():
 	state_machine.Initialize(self)
 	pass
 
-func _process(delta):
+func _process(_delta):
 	
 	direction = Vector2(
 		Input.get_axis("move_left","move_right"),
@@ -21,7 +21,7 @@ func _process(delta):
 	pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide()
 
 func SetDirection() -> bool:

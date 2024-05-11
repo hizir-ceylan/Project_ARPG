@@ -7,7 +7,7 @@ var attacking : bool = false
 @onready var animation_player : AnimationPlayer = $"../../AnimationPlayer"
 @onready var animation_attack : AnimationPlayer = $"../../PlayerSprite/AttackEffectsSprite/AnimationPlayer"
 @onready var audio_stream_player_2d : AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
-@onready var damage_box : DamageBox = $"../../Interactions/DamageBox"
+@onready var damage_box : DamageBox = %AttackDamageBox
 @export var attack_sound : AudioStream
 @export_range(1,20,0.5) var decelerate_speed : float = 5
 
