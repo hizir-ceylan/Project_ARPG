@@ -1,9 +1,2 @@
-res://scenes/player.tscn
-res://00_globals/global_level_manager.gd
-res://scripts/player_camera.gd
-res://scenes/Grass_01.tscn
-res://scripts/level_tilemap.gd
+res://scenes/slime.tscn
 res://scenes/playground.tscn
-res://scenes/hit_box.tscn
-res://scenes/damage_box.tscn
-res://scenes/plant.tscn
